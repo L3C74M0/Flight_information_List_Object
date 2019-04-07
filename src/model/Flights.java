@@ -42,11 +42,61 @@ public class Flights {
 	 * El metodo genera una lista de vuelos aleatoriamente
 	 * return ArrayList<Flight>
 	 */
-	public ArrayList<Flight> generateFlightsList() {
+	public ArrayList<Flight> generateFlightsList(int value) {
 		flights = new ArrayList<Flight>();
 
+		for (int I = 0; I < value; I++) {
+			int month = (int) (Math.random() * 12 + 1);
+			int day = (int) (Math.random() * 30 + 1);
+			String date = "2019";
+			if (month < 10 && day < 10) {
+				date += "-0" + month + "-0" + day;
+			} else if (month < 10 && day > 10) {
+				date += "-0" + month + "-" + day;
+			} else if (month > 10 && day < 10) {
+				date += "-" + month + "-0" + day;
+			} else {
+				date += "-" + month + "-" + day;
+			}
+
+			String departureTime = "";
+			int hour = (int) (Math.random() * 12 + 1);
+			int minutes = (int) (Math.random() * 59);
+			int momentOfTheDay = (int) (Math.random() * 1);
+
+			if (hour < 10) {
+				departureTime += "0" + hour + ":";
+			} else {
+				departureTime += hour + ":";
+			}
+			if (minutes < 10) {
+				departureTime += "0" + minutes;
+			} else {
+				departureTime += minutes;
+			}
+			if (momentOfTheDay == 0) {
+				departureTime += " AM";
+			} else {
+				departureTime = " PM";
+			}
+
+			int air = (int) (Math.random() * 10);
+			String airline = airlines[air];
+
+			int temp2 = (int) (Math.random() * 9999);
+			String id = temp2 + "";
+
+			int temp1 = (int) (Math.random() * 10);
+			String destinationCity = cities[temp1];
+
+			int boardingGate = (int) (Math.random() * 20);
+
+			Flight temp = new Flight(date, departureTime, airline, id, destinationCity, boardingGate);
+			flights.add(temp);
+		}
 		return flights;
 	}
+	
 	/*
 	 * El metodo organiza el arraylist por fecha
 	 */

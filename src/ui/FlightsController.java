@@ -96,7 +96,7 @@ public class FlightsController {
     		System.out.println("\nOrdenados\n");
     		
     		//ordenar por fecha y hora de salida
-    		flights.SortByDate();
+    		flights.sortByFlightId();
     	}catch(NumberFormatException e) {
     		Alert info = new Alert(AlertType.ERROR);
         	info.setTitle("ERROR");
@@ -133,7 +133,7 @@ public class FlightsController {
 
 	@FXML
 	void searchFlight(ActionEvent event) {
-
+		
 	}
 
 	@FXML

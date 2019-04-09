@@ -83,9 +83,12 @@ public class Flights {
 			int air = (int) (Math.random() * 10);
 			String airline = airlines[air];
 
-			int temp2 = (int) (Math.random() * 9999);
+			int temp2 = (int) (Math.random() * 9999 + 1000);
+			if(temp2 > 9999) {
+				temp2 = (int) (Math.random() * 2000 + 1000);
+			}
 			String id = temp2 + "";
-
+			
 			int temp1 = (int) (Math.random() * 10);
 			String destinationCity = cities[temp1];
 			if (destinationCity==null) {
@@ -103,6 +106,7 @@ public class Flights {
 	/*
 	 * El metodo organiza el arraylist por fecha
 	 */
+	/**
 	public void SortByDate() {
 		for (int I = 0; I < flights.size()-1; I++) {
 			
@@ -140,7 +144,7 @@ public class Flights {
 				flights.set(I,temp);
 			}
 		}
-	}
+	}*/
 	
 	public void sortByDeparture() {
 		
@@ -177,4 +181,40 @@ public class Flights {
 		Flight temp = null;
 		return temp;
 	}
+	
+	/*
+	 * Organiza los vuelos por identificador, utiliza el metodo de seleccion 
+	 */
+	public void sortByFlightId(){
+		/**for (int I = 0; I < flights.size() - 1; I++) {
+			int minor = Integer.parseInt(flights.get(I).getId());
+			int minorId = I;
+			
+			for (int J = I + 1; J < flights.size(); J++) {
+				if(Integer.parseInt(flights.get(J).getId()) < minor) {
+					minor = Integer.parseInt(flights.get(J).getId());
+					minorId = J;
+				}
+			}
+			Flight temp = flights.get(I);
+			flights.set(I, flights.get(minor));
+			flights.set(minorId, temp);
+		}
+		*/
+		for (int i = 0; i < flights.size()-1; i++) {
+			String minFlight = flights.get(i).getId();
+			int minpos = i;
+			for (int j = i+1; j < flights.size(); j++) {
+				String currentFlight = flights.get(j).getId();
+				if(currentFlight.compareTo(minFlight)<0) {
+					minFlight = currentFlight;
+					minpos = j;
+				}
+			}
+			Flight temp = flights.get(minpos);
+			flights.set(minpos, flights.get(i));
+			flights.set(i, temp);
+		}
+	}
+	
 }

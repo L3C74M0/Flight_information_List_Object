@@ -158,13 +158,41 @@ public class Flights {
 		
 	}
 	
+	/*
+	 * Ordena los vuelos segun ciudad de destino, ordenamiento por seleccion
+	 */
 	public void SortByDesnitationCity() {
-		
+		for (int i = 0; i < flights.size()-1; i++) {
+			String minorFlight = flights.get(i).getDestinationCity();
+			int minorPosition = i;
+			for (int j = i+1; j < flights.size(); j++) {
+				String currentFlight = flights.get(j).getDestinationCity();
+				if(currentFlight.compareTo(minorFlight)<0) {
+					minorFlight = currentFlight;
+					minorPosition = j;
+				}
+			}
+			Flight temp = flights.get(minorPosition);
+			flights.set(minorPosition, flights.get(i));
+			flights.set(i, temp);
+		}		
 	}
 	
+	/*
+	 * Organiza los vuelos por p, utiliza el metodo burubuja de ordenamiento 
+	 */
 	public void sortByBoardingGate() {
-		
+		for (int I = 0; I < flights.size() - 1; I++){
+			for (int J = 0; J < flights.size() - 1; J++){
+				if (flights.get(J).getBoardingGate() > flights.get(J+1).getBoardingGate()){
+					Flight tmp = flights.get(J+1);
+					flights.set(J+1, flights.get(J));
+					flights.set(J,tmp);
+				}
+			}
+		}
 	}
+	
 	/*
 	 * El metodo calcula el tiempo que tardó en realizar una búsqueda u ordenamiento
 	 */
@@ -186,33 +214,18 @@ public class Flights {
 	 * Organiza los vuelos por identificador, utiliza el metodo de seleccion 
 	 */
 	public void sortByFlightId(){
-		/**for (int I = 0; I < flights.size() - 1; I++) {
-			int minor = Integer.parseInt(flights.get(I).getId());
-			int minorId = I;
-			
-			for (int J = I + 1; J < flights.size(); J++) {
-				if(Integer.parseInt(flights.get(J).getId()) < minor) {
-					minor = Integer.parseInt(flights.get(J).getId());
-					minorId = J;
-				}
-			}
-			Flight temp = flights.get(I);
-			flights.set(I, flights.get(minor));
-			flights.set(minorId, temp);
-		}
-		*/
 		for (int i = 0; i < flights.size()-1; i++) {
-			String minFlight = flights.get(i).getId();
-			int minpos = i;
+			String minorFlight = flights.get(i).getId();
+			int minorPosition = i;
 			for (int j = i+1; j < flights.size(); j++) {
 				String currentFlight = flights.get(j).getId();
-				if(currentFlight.compareTo(minFlight)<0) {
-					minFlight = currentFlight;
-					minpos = j;
+				if(currentFlight.compareTo(minorFlight)<0) {
+					minorFlight = currentFlight;
+					minorPosition = j;
 				}
 			}
-			Flight temp = flights.get(minpos);
-			flights.set(minpos, flights.get(i));
+			Flight temp = flights.get(minorPosition);
+			flights.set(minorPosition, flights.get(i));
 			flights.set(i, temp);
 		}
 	}

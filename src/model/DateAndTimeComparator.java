@@ -2,7 +2,7 @@ package model;
 
 import java.util.Comparator;
 
-public class IdComparator implements Comparator<Flight>{
+public class DateAndTimeComparator implements Comparator<Flight>{
 
 	@Override
 	public int compare(Flight flight1, Flight flight2) {

@@ -96,7 +96,7 @@ public class FlightsController {
     		System.out.println("\nOrdenados\n");
     		
     		//ordenar por fecha y hora de salida
-    		flights.sortByFlightId();
+    		flights.SortByDesnitationCity();
     	}catch(NumberFormatException e) {
     		Alert info = new Alert(AlertType.ERROR);
         	info.setTitle("ERROR");

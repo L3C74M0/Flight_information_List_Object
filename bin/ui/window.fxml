@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -9,12 +10,12 @@
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.FlightsController">
    <children>
-      <ImageView fx:id="wallpaper0" fitHeight="627.0" fitWidth="1024.0" layoutY="104.0">
+      <ImageView fx:id="wallpaper0" fitHeight="592.0" fitWidth="1024.0" layoutY="139.0">
          <image>
             <Image url="@../../imgs/wallpaper2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="wallpaper2" fitHeight="43.0" fitWidth="1024.0" layoutY="61.0">
+      <ImageView fx:id="wallpaper2" fitHeight="79.0" fitWidth="1024.0" layoutY="61.0">
          <image>
             <Image url="@../../imgs/wallpaper1.png" />
          </image>
@@ -24,32 +25,32 @@
             <Image url="@../../imgs/wallpaper.png" />
          </image>
       </ImageView>
-      <Button fx:id="date" layoutX="47.0" layoutY="64.0" mnemonicParsing="false" onAction="#sortByDate" style="-fx-background-color: red;" text="DATE ▼" textAlignment="CENTER">
+      <Button fx:id="date" layoutX="47.0" layoutY="101.0" mnemonicParsing="false" onAction="#sortByDate" style="-fx-background-color: red;" text="DATE ▼" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="time" layoutX="176.0" layoutY="64.0" mnemonicParsing="false" onAction="#sortByTime" style="-fx-background-color: red;" text="TIME ▼">
+      <Button fx:id="time" layoutX="176.0" layoutY="101.0" mnemonicParsing="false" onAction="#sortByTime" style="-fx-background-color: red;" text="TIME ▼">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="airline" layoutX="304.0" layoutY="64.0" mnemonicParsing="false" onAction="#sortByAirline" style="-fx-background-color: red;" text="AIRLINE ▼">
+      <Button fx:id="airline" layoutX="303.0" layoutY="101.0" mnemonicParsing="false" onAction="#sortByAirline" style="-fx-background-color: red;" text="AIRLINE ▼">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="flight" layoutX="472.0" layoutY="64.0" mnemonicParsing="false" onAction="#sortByFlight" style="-fx-background-color: red;" text="FLIGHT ▼">
+      <Button fx:id="flight" layoutX="471.0" layoutY="101.0" mnemonicParsing="false" onAction="#sortByFlight" style="-fx-background-color: red;" text="FLIGHT ▼">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="destiny" layoutX="664.0" layoutY="64.0" mnemonicParsing="false" onAction="#sortByCity" style="-fx-background-color: red;" text="TO ▼">
+      <Button fx:id="destiny" layoutX="664.0" layoutY="101.0" mnemonicParsing="false" onAction="#sortByCity" style="-fx-background-color: red;" text="TO ▼">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="gate" layoutX="801.0" layoutY="64.0" mnemonicParsing="false" onAction="#sortByGate" style="-fx-background-color: red;" text="GATE ▼">
+      <Button fx:id="gate" layoutX="801.0" layoutY="101.0" mnemonicParsing="false" onAction="#sortByGate" style="-fx-background-color: red;" text="GATE ▼">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -64,20 +65,40 @@
             <Image url="@../../imgs/wallpaper1.png" />
          </image>
       </ImageView>
-      <Label layoutX="45.0" layoutY="730.0" text="PALMIRA">
+      <Button fx:id="nextPage" layoutX="857.0" layoutY="731.0" mnemonicParsing="false" onAction="#nextPage" style="-fx-background-color: RED;" text="NEXT PAGE ►">
          <font>
-            <Font name="System Bold" size="30.0" />
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="previousPage" layoutX="647.0" layoutY="732.0" mnemonicParsing="false" onAction="#previousPage" style="-fx-background-color: RED;" text="◄ PREVIOUS PAGE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="search" layoutX="444.0" layoutY="732.0" mnemonicParsing="false" onAction="#searchFlight" style="-fx-background-color: RED;" text="SEARCH FLIGHT">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <TextField fx:id="searchValue" layoutX="201.0" layoutY="734.0" prefHeight="25.0" prefWidth="243.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="amountFlights" layoutX="329.0" layoutY="69.0" prefHeight="30.0" prefWidth="150.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Button fx:id="generateFlights" layoutX="480.0" layoutY="65.0" mnemonicParsing="false" onAction="#generateFlights" style="-fx-background-color: RED;" text="GENERATE FLIGHTS LIST">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Label layoutX="32.0" layoutY="728.0" text="PALMIRA">
+         <font>
+            <Font name="System Bold" size="26.0" />
          </font>
       </Label>
-      <Button fx:id="nextPage" layoutX="682.0" layoutY="731.0" mnemonicParsing="false" onAction="#nextPage" style="-fx-background-color: RED;" text="NEXT PAGE ►">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
-      <Button fx:id="previousPage" layoutX="465.0" layoutY="731.0" mnemonicParsing="false" onAction="#previousPage" style="-fx-background-color: RED;" text="◄ PREVIOUS PAGE">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
    </children>
 </Pane>

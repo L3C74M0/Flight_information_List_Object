@@ -8,13 +8,13 @@ public class Flight implements Comparable<Flight> {
 	private String destinationCity;
 	private int boardingGate;
 
-	public Flight(String date,String departureTime, String airline,String id,String destinationCity,int boardingGate) {
-		this.date=date;
-		this.departureTime=departureTime;
-		this.airline=airline;
-		this.id=id;
-		this.destinationCity=destinationCity;
-		this.boardingGate=boardingGate;
+	public Flight(String date, String departureTime, String airline, String id, String destinationCity, int boardingGate) {
+		this.date = date;
+		this.departureTime = departureTime;
+		this.airline = airline;
+		this.id = id;
+		this.destinationCity = destinationCity;
+		this.boardingGate = boardingGate;
 	}
 
 	public int getBoardingGate() {

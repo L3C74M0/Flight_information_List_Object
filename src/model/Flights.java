@@ -20,7 +20,7 @@ public class Flights {
 		cities[6]="Cucuta";
 		cities[7]="Texas";
 		cities[8]="Braga";
-		cities[9]="Mescu";
+		cities[9]="Quito";
 		
 		airlines[0] = "Avianca";
 		airlines[1] = "LATAM";
@@ -44,7 +44,7 @@ public class Flights {
 	 */
 	public ArrayList<Flight> generateFlightsList(int value) {
 		flights = new ArrayList<Flight>();
-
+	
 		for (int I = 0; I < value; I++) {
 			int month = (int) (Math.random() * 12 + 1);
 			int day = (int) (Math.random() * 30 + 1);
@@ -62,7 +62,7 @@ public class Flights {
 			String departureTime = "";
 			int hour = (int) (Math.random() * 12 + 1);
 			int minutes = (int) (Math.random() * 59);
-			int momentOfTheDay = (int) (Math.random() * 1);
+			int momentOfTheDay = (int) (Math.random() * 2);
 
 			if (hour < 10) {
 				departureTime += "0" + hour + ":";
@@ -74,10 +74,10 @@ public class Flights {
 			} else {
 				departureTime += minutes;
 			}
-			if (momentOfTheDay == 0) {
+			if (momentOfTheDay == 1) {
 				departureTime += " AM";
 			} else {
-				departureTime = " PM";
+				departureTime += " PM";
 			}
 
 			int air = (int) (Math.random() * 10);
@@ -88,7 +88,10 @@ public class Flights {
 
 			int temp1 = (int) (Math.random() * 10);
 			String destinationCity = cities[temp1];
-
+			if (destinationCity==null) {
+				destinationCity = cities[0];
+			}
+			
 			int boardingGate = (int) (Math.random() * 20);
 
 			Flight temp = new Flight(date, departureTime, airline, id, destinationCity, boardingGate);
@@ -138,6 +141,5 @@ public class Flights {
 	public Flight searchFly(String characteristic) {
 		Flight temp = null;
 		return temp;
-		
 	}
 }

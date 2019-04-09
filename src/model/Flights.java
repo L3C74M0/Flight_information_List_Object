@@ -107,7 +107,7 @@ public class Flights {
 	 * El metodo organiza el arraylist por fecha
 	 */
 	/**
-	public void SortByDate() {
+	public void sortByDate() {
 		for (int I = 0; I < flights.size()-1; I++) {
 			
 			String minorDate = flights.get(I).getDate();
@@ -147,15 +147,37 @@ public class Flights {
 	}*/
 	
 	public void sortByDeparture() {
-		
+		for (int i = 0; i < flights.size()-1; i++) {
+			String minorFlight = flights.get(i).getDepartureTime();
+			int minorPosition = i;
+			for (int j = i+1; j < flights.size(); j++) {
+				String currentFlight = flights.get(j).getDepartureTime();
+				if(currentFlight.compareTo(minorFlight)<0) {
+					minorFlight = currentFlight;
+					minorPosition = j;
+				}
+			}
+			Flight temp = flights.get(minorPosition);
+			flights.set(minorPosition, flights.get(i));
+			flights.set(i, temp);
+		}
 	}
 
 	public void SortByAirline() {
-		
-	}
-	
-	public void sortById() {
-		
+		for (int i = 0; i < flights.size()-1; i++) {
+			String minorFlight = flights.get(i).getAirline();
+			int minorPosition = i;
+			for (int j = i+1; j < flights.size(); j++) {
+				String currentFlight = flights.get(j).getAirline();
+				if(currentFlight.compareTo(minorFlight)<0) {
+					minorFlight = currentFlight;
+					minorPosition = j;
+				}
+			}
+			Flight temp = flights.get(minorPosition);
+			flights.set(minorPosition, flights.get(i));
+			flights.set(i, temp);
+		}
 	}
 	
 	/*

@@ -84,6 +84,19 @@ public class FlightsController {
 		try {
     		value = Integer.parseInt(amountFlights.getText());
     		flights = new Flights(flights.generateFlightsList(value));
+    		
+    		for (int i = 0; i < flights.getFlights().size(); i++) {
+    			System.out.println(flights.getFlights().get(i).getDate()+"\t"+
+    					flights.getFlights().get(i).getDepartureTime()+"\t"+
+    					flights.getFlights().get(i).getAirline()+"\t"+
+    					flights.getFlights().get(i).getId()+"\t"+
+    					flights.getFlights().get(i).getDestinationCity()+"\t"+
+    					flights.getFlights().get(i).getBoardingGate()+"\t");	
+    		}
+    		System.out.println("\nOrdenados\n");
+    		
+    		//ordenar por fecha y hora de salida
+    		flights.SortByDate();
     	}catch(NumberFormatException e) {
     		Alert info = new Alert(AlertType.ERROR);
         	info.setTitle("ERROR");
@@ -92,9 +105,12 @@ public class FlightsController {
         	info.setContentText("Please enter some number");
         	info.show();
     	} 
+		
+		
+		
 		/**
 		 * Prueba en consola para ver si se crean vuelos correctamente
-		 
+		*/
 		for (int i = 0; i < flights.getFlights().size(); i++) {
 			System.out.println(flights.getFlights().get(i).getDate()+"\t"+
 					flights.getFlights().get(i).getDepartureTime()+"\t"+
@@ -102,7 +118,7 @@ public class FlightsController {
 					flights.getFlights().get(i).getId()+"\t"+
 					flights.getFlights().get(i).getDestinationCity()+"\t"+
 					flights.getFlights().get(i).getBoardingGate()+"\t");	
-		}*/
+		}
     }
 	
 	@FXML

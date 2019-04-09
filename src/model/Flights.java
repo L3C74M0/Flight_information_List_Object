@@ -104,7 +104,42 @@ public class Flights {
 	 * El metodo organiza el arraylist por fecha
 	 */
 	public void SortByDate() {
-		
+		for (int I = 0; I < flights.size()-1; I++) {
+			
+			String minorDate = flights.get(I).getDate();
+			String[] separateDate = minorDate.split("-");
+			String minMonth = separateDate[1];
+			String minDay = separateDate[2];
+			
+			int minorMonth = Integer.parseInt(minMonth);
+			int minorDay = Integer.parseInt(minDay);
+			
+			int minorPosition = I;
+			
+			for (int J = I+1; J < flights.size(); J++) {
+				String dateNext = flights.get(J).getDate();
+				String[] separateDateNext = dateNext.split("-");
+				String monthNex = separateDateNext[1];
+				String dayNex = separateDateNext[2];
+				
+				int monthNext = Integer.parseInt(monthNex);
+				int dayNext = Integer.parseInt(dayNex);
+				
+				if (minorMonth > monthNext) {
+					minorMonth = monthNext;
+					minorDay = dayNext;
+					minorPosition = J;
+				} else if (minorMonth == monthNext) {
+					if (minorDay > dayNext) {
+						minorDay = dayNext;
+						minorPosition = J;
+					}
+				}
+				Flight temp = flights.get(minorPosition);
+				flights.set(minorPosition, flights.get(I));
+				flights.set(I,temp);
+			}
+		}
 	}
 	
 	public void sortByDeparture() {

@@ -104,9 +104,9 @@ public class Flights {
 	}
 	
 	/*
-	 * El metodo organiza el arraylist por fecha
+	 * El metodo organiza el arraylist por fecha, sin completar
 	 */
-	/**
+	
 	public void sortByDate() {
 		for (int I = 0; I < flights.size()-1; I++) {
 			
@@ -129,38 +129,46 @@ public class Flights {
 				int monthNext = Integer.parseInt(monthNex);
 				int dayNext = Integer.parseInt(dayNex);
 				
-				if (minorMonth > monthNext) {
-					minorMonth = monthNext;
-					minorDay = dayNext;
+				if(minorDay > dayNext) {
 					minorPosition = J;
-				} else if (minorMonth == monthNext) {
-					if (minorDay > dayNext) {
-						minorDay = dayNext;
-						minorPosition = J;
-					}
 				}
+				
 				Flight temp = flights.get(minorPosition);
 				flights.set(minorPosition, flights.get(I));
 				flights.set(I,temp);
 			}
 		}
-	}*/
+	}
 	
 	public void sortByDeparture() {
-		for (int i = 0; i < flights.size()-1; i++) {
-			String minorFlight = flights.get(i).getDepartureTime();
-			int minorPosition = i;
-			for (int j = i+1; j < flights.size(); j++) {
-				String currentFlight = flights.get(j).getDepartureTime();
-				if(currentFlight.compareTo(minorFlight)<0) {
+
+		for (int I = 0; I < flights.size() - 1; I++) {
+
+			//String minor = flights.get(I).getDepartureTime();
+			//String[] separate = minor.split(" ");
+			//String momentOfTheDay = separate[1];
+			
+			
+			String minorFlight = flights.get(I).getDepartureTime();
+			int minorPosition = I;
+			for (int J = I + 1; J < flights.size(); J++) {
+				String currentFlight = flights.get(J).getDepartureTime();
+				if (currentFlight.compareTo(minorFlight) < 0) {
 					minorFlight = currentFlight;
-					minorPosition = j;
+					minorPosition = J;
 				}
 			}
 			Flight temp = flights.get(minorPosition);
-			flights.set(minorPosition, flights.get(i));
-			flights.set(i, temp);
+			flights.set(minorPosition, flights.get(I));
+			flights.set(I, temp);
 		}
+		
+	
+		
+		
+		
+		
+		
 	}
 
 	public void SortByAirline() {
@@ -184,19 +192,19 @@ public class Flights {
 	 * Ordena los vuelos segun ciudad de destino, ordenamiento por seleccion
 	 */
 	public void SortByDesnitationCity() {
-		for (int i = 0; i < flights.size()-1; i++) {
-			String minorFlight = flights.get(i).getDestinationCity();
-			int minorPosition = i;
-			for (int j = i+1; j < flights.size(); j++) {
-				String currentFlight = flights.get(j).getDestinationCity();
+		for (int I = 0; I < flights.size()-1; I++) {
+			String minorFlight = flights.get(I).getDestinationCity();
+			int minorPosition = I;
+			for (int J = I+1; J < flights.size(); J++) {
+				String currentFlight = flights.get(J).getDestinationCity();
 				if(currentFlight.compareTo(minorFlight)<0) {
 					minorFlight = currentFlight;
-					minorPosition = j;
+					minorPosition = J;
 				}
 			}
 			Flight temp = flights.get(minorPosition);
-			flights.set(minorPosition, flights.get(i));
-			flights.set(i, temp);
+			flights.set(minorPosition, flights.get(I));
+			flights.set(I, temp);
 		}		
 	}
 	

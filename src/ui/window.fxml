@@ -30,27 +30,27 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="time" layoutX="176.0" layoutY="101.0" mnemonicParsing="false" onAction="#sortByTime" style="-fx-background-color: red;" text="TIME ▼">
+      <Button fx:id="time" layoutX="181.0" layoutY="101.0" mnemonicParsing="false" onAction="#sortByTime" style="-fx-background-color: red;" text="TIME ▼">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="airline" layoutX="303.0" layoutY="101.0" mnemonicParsing="false" onAction="#sortByAirline" style="-fx-background-color: red;" text="AIRLINE ▼">
+      <Button fx:id="airline" layoutX="368.0" layoutY="101.0" mnemonicParsing="false" onAction="#sortByAirline" style="-fx-background-color: red;" text="AIRLINE ▼">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="flight" layoutX="471.0" layoutY="101.0" mnemonicParsing="false" onAction="#sortByFlight" style="-fx-background-color: red;" text="FLIGHT ▼">
+      <Button fx:id="flight" layoutX="569.0" layoutY="101.0" mnemonicParsing="false" onAction="#sortByFlight" style="-fx-background-color: red;" text="FLIGHT ▼">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="destiny" layoutX="664.0" layoutY="101.0" mnemonicParsing="false" onAction="#sortByCity" style="-fx-background-color: red;" text="TO ▼">
+      <Button fx:id="destiny" layoutX="731.0" layoutY="101.0" mnemonicParsing="false" onAction="#sortByCity" style="-fx-background-color: red;" text="TO ▼">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="gate" layoutX="801.0" layoutY="101.0" mnemonicParsing="false" onAction="#sortByGate" style="-fx-background-color: red;" text="GATE ▼">
+      <Button fx:id="gate" layoutX="869.0" layoutY="101.0" mnemonicParsing="false" onAction="#sortByGate" style="-fx-background-color: red;" text="GATE ▼">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -98,6 +98,21 @@
       <Label layoutX="32.0" layoutY="728.0" text="PALMIRA">
          <font>
             <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="dateColum" layoutX="22.0" layoutY="150.0" lineSpacing="25.0" textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="flightColumn" layoutX="576.0" layoutY="150.0" lineSpacing="25.0" textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="airlineColumn" layoutX="329.0" layoutY="150.0" lineSpacing="25.0" textFill="WHITE">
+         <font>
+            <Font size="23.0" />
          </font>
       </Label>
    </children>

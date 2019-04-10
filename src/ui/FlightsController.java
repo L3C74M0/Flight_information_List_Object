@@ -17,6 +17,9 @@ import model.Flights;
 public class FlightsController {
 	
 	private Flights flights;
+	private String label1="";
+	private String label2="";
+	private String label3="";
 	
 	@FXML
 	private ResourceBundle resources;
@@ -77,26 +80,22 @@ public class FlightsController {
 
 	@FXML
     private Button generateFlights;
-
+	
+	@FXML
+    private Label dateColum;
+	
+	@FXML
+    private Label flightColumn;
+	
+	 @FXML
+	 private Label airlineColumn;
+	
 	@FXML
     void generateFlights(ActionEvent event) {
 		int value = 0;
 		try {
     		value = Integer.parseInt(amountFlights.getText());
     		flights = new Flights(flights.generateFlightsList(value));
-    		
-    		for (int i = 0; i < flights.getFlights().size(); i++) {
-    			System.out.println(flights.getFlights().get(i).getDate()+"\t"+
-    					flights.getFlights().get(i).getDepartureTime()+"\t"+
-    					flights.getFlights().get(i).getAirline()+"\t"+
-    					flights.getFlights().get(i).getId()+"\t"+
-    					flights.getFlights().get(i).getDestinationCity()+"\t"+
-    					flights.getFlights().get(i).getBoardingGate()+"\t");	
-    		}
-    		System.out.println("\nOrdenados\n");
-    		
-    		//ordenar por fecha y hora de salida
-    		//flights.sortByDate();
     	}catch(NumberFormatException e) {
     		Alert info = new Alert(AlertType.ERROR);
         	info.setTitle("ERROR");
@@ -105,20 +104,7 @@ public class FlightsController {
         	info.setContentText("Please enter some number");
         	info.show();
     	} 
-		
-		
-		
-		/**
-		 * Prueba en consola para ver si se crean vuelos correctamente
-		*/
-		for (int i = 0; i < flights.getFlights().size(); i++) {
-			System.out.println(flights.getFlights().get(i).getDate()+"\t"+
-					flights.getFlights().get(i).getDepartureTime()+"\t"+
-					flights.getFlights().get(i).getAirline()+"\t"+
-					flights.getFlights().get(i).getId()+"\t"+
-					flights.getFlights().get(i).getDestinationCity()+"\t"+
-					flights.getFlights().get(i).getBoardingGate()+"\t");	
-		}
+		showTable();
     }
 	
 	@FXML
@@ -128,7 +114,7 @@ public class FlightsController {
 
 	@FXML
 	void previousPage(ActionEvent event) {
-
+		
 	}
 
 	@FXML
@@ -138,32 +124,90 @@ public class FlightsController {
 
 	@FXML
 	void sortByAirline(ActionEvent event) {
-
+		try {
+			flights.SortByAirline();
+			showTable();
+		}catch(NullPointerException e) {
+    		Alert info = new Alert(AlertType.ERROR);
+        	info.setTitle("ERROR");
+        	info.setHeaderText(null);
+        	info.initStyle(StageStyle.UTILITY);
+        	info.setContentText("Please enter some number");
+        	info.show();
+    	} 
 	}
 
 	@FXML
 	void sortByCity(ActionEvent event) {
-
+		try{
+			flights.SortByDesnitationCity();
+			showTable();
+		}catch(NullPointerException e) {
+    		Alert info = new Alert(AlertType.ERROR);
+        	info.setTitle("ERROR");
+        	info.setHeaderText(null);
+        	info.initStyle(StageStyle.UTILITY);
+        	info.setContentText("Please enter some number");
+        	info.show();
+    	} 
 	}
 
 	@FXML
 	void sortByDate(ActionEvent event) {
-
+		try{
+			
+		}catch(NullPointerException e) {
+    		Alert info = new Alert(AlertType.ERROR);
+        	info.setTitle("ERROR");
+        	info.setHeaderText(null);
+        	info.initStyle(StageStyle.UTILITY);
+        	info.setContentText("Please enter some number");
+        	info.show();
+    	} 
 	}
 
 	@FXML
 	void sortByFlight(ActionEvent event) {
-
+		try{
+			flights.sortByFlightId();
+			showTable();
+		}catch(NullPointerException e) {
+    		Alert info = new Alert(AlertType.ERROR);
+        	info.setTitle("ERROR");
+        	info.setHeaderText(null);
+        	info.initStyle(StageStyle.UTILITY);
+        	info.setContentText("Please enter some number");
+        	info.show();
+    	} 
 	}
 
 	@FXML
 	void sortByGate(ActionEvent event) {
-
+		try{
+			flights.sortByBoardingGate();
+			showTable();
+		}catch(NullPointerException e) {
+    		Alert info = new Alert(AlertType.ERROR);
+        	info.setTitle("ERROR");
+        	info.setHeaderText(null);
+        	info.initStyle(StageStyle.UTILITY);
+        	info.setContentText("Please enter some number");
+        	info.show();
+    	} 
 	}
 
 	@FXML
 	void sortByTime(ActionEvent event) {
-
+		try{
+			
+		}catch(NullPointerException e) {
+    		Alert info = new Alert(AlertType.ERROR);
+        	info.setTitle("ERROR");
+        	info.setHeaderText(null);
+        	info.initStyle(StageStyle.UTILITY);
+        	info.setContentText("Please enter some number");
+        	info.show();
+    	} 
 	}
 
 	@FXML
@@ -172,4 +216,30 @@ public class FlightsController {
 		nextPage.setVisible(false);
 		previousPage.setVisible(false);
 	}
+	
+	public void showTable() {
+		label1="";
+		label2="";
+		label3="";
+		for (int I = 0; I < flights.getFlights().size(); I++) {
+			label1 += 
+					flights.getFlights().get(I).getDate()+"\t"+
+    				flights.getFlights().get(I).getDepartureTime()+"\t\t\t\t\t\t\t\t\t\t\t\t\t"+
+    				flights.getFlights().get(I).getBoardingGate()+"\n";
+			dateColum.setText(label1);
+		}
+		for (int J = 0; J < flights.getFlights().size(); J++) {
+			label2 += 
+					flights.getFlights().get(J).getId()+"\t\t\t"+
+					flights.getFlights().get(J).getDestinationCity()+"\n";
+			flightColumn.setText(label2);
+		}
+		for (int K = 0; K < flights.getFlights().size(); K++) {
+			label3 += 
+					flights.getFlights().get(K).getAirline()+"\n";
+			airlineColumn.setText(label3);
+		}
+	}
+	
+	
 }

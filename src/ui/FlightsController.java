@@ -15,12 +15,13 @@ import javafx.stage.StageStyle;
 import model.Flights;
 
 public class FlightsController {
-	
+
 	private Flights flights;
-	private String label1="";
-	private String label2="";
-	private String label3="";
-	
+	private String label1 = "";
+	private String label2 = "";
+	private String label3 = "";
+	int currentPage = 1;
+
 	@FXML
 	private ResourceBundle resources;
 
@@ -79,47 +80,62 @@ public class FlightsController {
 	private TextField amountFlights;
 
 	@FXML
-    private Button generateFlights;
-	
+	private Button generateFlights;
+
 	@FXML
-    private Label dateColum;
-	
+	private Label dateColum;
+
 	@FXML
-    private Label flightColumn;
-	
-	 @FXML
-	 private Label airlineColumn;
-	
+	private Label flightColumn;
+
 	@FXML
-    void generateFlights(ActionEvent event) {
+	private Label airlineColumn;
+
+	@FXML
+	void generateFlights(ActionEvent event) {
 		int value = 0;
 		try {
-    		value = Integer.parseInt(amountFlights.getText());
-    		flights = new Flights(flights.generateFlightsList(value));
-    	}catch(NumberFormatException e) {
-    		Alert info = new Alert(AlertType.ERROR);
-        	info.setTitle("ERROR");
-        	info.setHeaderText(null);
-        	info.initStyle(StageStyle.UTILITY);
-        	info.setContentText("Please enter some number");
-        	info.show();
-    	} 
+			value = Integer.parseInt(amountFlights.getText());
+			flights = new Flights(flights.generateFlightsList(value));
+			if (value > 10) {
+				nextPage.setVisible(true);
+				previousPage.setVisible(true);
+			}
+			showTable();
+		} catch (NumberFormatException e) {
+			Alert info = new Alert(AlertType.ERROR);
+			info.setTitle("ERROR");
+			info.setHeaderText(null);
+			info.initStyle(StageStyle.UTILITY);
+			info.setContentText("Please enter some number");
+			info.show();
+		}
+
 		showTable();
-    }
-	
+	}
+
 	@FXML
 	void nextPage(ActionEvent event) {
-
+		int newPage = currentPage + 1;
+		if (newPage < (flights.getFlights().size() / 10) + 2) {
+			currentPage = newPage;
+			showTable();
+		}
 	}
 
 	@FXML
 	void previousPage(ActionEvent event) {
-		
+		int newPage = currentPage - 1;
+		if (newPage > 0) {
+			currentPage = newPage;
+			showTable();
+		}
 	}
 
 	@FXML
 	void searchFlight(ActionEvent event) {
-		
+		String characteristic = searchValue.getText();
+		flights.searchFly(characteristic);
 	}
 
 	@FXML
@@ -127,89 +143,89 @@ public class FlightsController {
 		try {
 			flights.SortByAirline();
 			showTable();
-		}catch(NullPointerException e) {
-    		Alert info = new Alert(AlertType.ERROR);
-        	info.setTitle("ERROR");
-        	info.setHeaderText(null);
-        	info.initStyle(StageStyle.UTILITY);
-        	info.setContentText("Please create some flights first");
-        	info.show();
-    	} 
+		} catch (NullPointerException e) {
+			Alert info = new Alert(AlertType.ERROR);
+			info.setTitle("ERROR");
+			info.setHeaderText(null);
+			info.initStyle(StageStyle.UTILITY);
+			info.setContentText("Please create some flights first");
+			info.show();
+		}
 	}
 
 	@FXML
 	void sortByCity(ActionEvent event) {
-		try{
+		try {
 			flights.SortByDesnitationCity();
 			showTable();
-		}catch(NullPointerException e) {
-    		Alert info = new Alert(AlertType.ERROR);
-        	info.setTitle("ERROR");
-        	info.setHeaderText(null);
-        	info.initStyle(StageStyle.UTILITY);
-        	info.setContentText("Please create some flights first");
-        	info.show();
-    	} 
+		} catch (NullPointerException e) {
+			Alert info = new Alert(AlertType.ERROR);
+			info.setTitle("ERROR");
+			info.setHeaderText(null);
+			info.initStyle(StageStyle.UTILITY);
+			info.setContentText("Please create some flights first");
+			info.show();
+		}
 	}
 
 	@FXML
 	void sortByDate(ActionEvent event) {
-		try{
+		try {
 			flights.sortByDate();
 			showTable();
-		}catch(NullPointerException e) {
-    		Alert info = new Alert(AlertType.ERROR);
-        	info.setTitle("ERROR");
-        	info.setHeaderText(null);
-        	info.initStyle(StageStyle.UTILITY);
-        	info.setContentText("Please create some flights first");
-        	info.show();
-    	} 
+		} catch (NullPointerException e) {
+			Alert info = new Alert(AlertType.ERROR);
+			info.setTitle("ERROR");
+			info.setHeaderText(null);
+			info.initStyle(StageStyle.UTILITY);
+			info.setContentText("Please create some flights first");
+			info.show();
+		}
 	}
 
 	@FXML
 	void sortByFlight(ActionEvent event) {
-		try{
+		try {
 			flights.sortByFlightId();
 			showTable();
-		}catch(NullPointerException e) {
-    		Alert info = new Alert(AlertType.ERROR);
-        	info.setTitle("ERROR");
-        	info.setHeaderText(null);
-        	info.initStyle(StageStyle.UTILITY);
-        	info.setContentText("Please create some flights first");
-        	info.show();
-    	} 
+		} catch (NullPointerException e) {
+			Alert info = new Alert(AlertType.ERROR);
+			info.setTitle("ERROR");
+			info.setHeaderText(null);
+			info.initStyle(StageStyle.UTILITY);
+			info.setContentText("Please create some flights first");
+			info.show();
+		}
 	}
 
 	@FXML
 	void sortByGate(ActionEvent event) {
-		try{
+		try {
 			flights.sortByBoardingGate();
 			showTable();
-		}catch(NullPointerException e) {
-    		Alert info = new Alert(AlertType.ERROR);
-        	info.setTitle("ERROR");
-        	info.setHeaderText(null);
-        	info.initStyle(StageStyle.UTILITY);
-        	info.setContentText("Please create some flights first");
-        	info.show();
-    	} 
+		} catch (NullPointerException e) {
+			Alert info = new Alert(AlertType.ERROR);
+			info.setTitle("ERROR");
+			info.setHeaderText(null);
+			info.initStyle(StageStyle.UTILITY);
+			info.setContentText("Please create some flights first");
+			info.show();
+		}
 	}
 
 	@FXML
 	void sortByTime(ActionEvent event) {
-		try{
-			flights.sortByDeparture();;
+		try {
+			flights.sortByDeparture();
 			showTable();
-		}catch(NullPointerException e) {
-    		Alert info = new Alert(AlertType.ERROR);
-        	info.setTitle("ERROR");
-        	info.setHeaderText(null);
-        	info.initStyle(StageStyle.UTILITY);
-        	info.setContentText("Please create some flights first");
-        	info.show();
-    	} 
+		} catch (NullPointerException e) {
+			Alert info = new Alert(AlertType.ERROR);
+			info.setTitle("ERROR");
+			info.setHeaderText(null);
+			info.initStyle(StageStyle.UTILITY);
+			info.setContentText("Please create some flights first");
+			info.show();
+		}
 	}
 
 	@FXML
@@ -218,24 +234,31 @@ public class FlightsController {
 		nextPage.setVisible(false);
 		previousPage.setVisible(false);
 	}
-	
+
 	public void showTable() {
-		label1="";
-		label2="";
-		label3="";
-		for (int I = 0; I < flights.getFlights().size(); I++) {
-			label1 += flights.getFlights().get(I).getDate() + "\t" + flights.getFlights().get(I).getDepartureTime()
-					+ "\t\t\t\t\t\t\t\t\t\t\t\t\t" + flights.getFlights().get(I).getBoardingGate() + "\n";
-			dateColum.setText(label1);
+		label1 = "";
+		label2 = "";
+		label3 = "";
 
-			label2 += flights.getFlights().get(I).getId() + "\t\t\t" + flights.getFlights().get(I).getDestinationCity()
-					+ "\n";
-			flightColumn.setText(label2);
+		int pages = (flights.getFlights().size() / 10);
 
-			label3 += flights.getFlights().get(I).getAirline() + "\n";
-			airlineColumn.setText(label3);
+		for (int i = 0; i <= pages; i++) {
+			if (i + 1 == currentPage) {
+				for (int J = (10 * i); J < 10 + (10 * i) && J < flights.getFlights().size(); J++) {
+					label1 += flights.getFlights().get(J).getDate() + "\t"
+							+ flights.getFlights().get(J).getDepartureTime() + "\t\t\t\t\t\t\t\t\t\t\t\t\t"
+							+ flights.getFlights().get(J).getBoardingGate() + "\n";
+					dateColum.setText(label1);
+
+					label2 += flights.getFlights().get(J).getId() + "\t\t\t"
+							+ flights.getFlights().get(J).getDestinationCity() + "\n";
+					flightColumn.setText(label2);
+
+					label3 += flights.getFlights().get(J).getAirline() + "\n";
+					airlineColumn.setText(label3);
+				}
+
+			}
 		}
 	}
-	
-	
 }

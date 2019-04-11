@@ -19,6 +19,7 @@ public class Main extends Application{
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setTitle("Alfonso Bonilla Aragón International Airport");
+		stage.setResizable(false);
 		stage.show();
 	}
 }

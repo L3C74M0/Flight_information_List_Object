@@ -67,17 +67,17 @@
       </ImageView>
       <Button fx:id="nextPage" layoutX="857.0" layoutY="731.0" mnemonicParsing="false" onAction="#nextPage" style="-fx-background-color: RED;" text="NEXT PAGE ►">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <Button fx:id="previousPage" layoutX="647.0" layoutY="732.0" mnemonicParsing="false" onAction="#previousPage" style="-fx-background-color: RED;" text="◄ PREVIOUS PAGE">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="search" layoutX="444.0" layoutY="732.0" mnemonicParsing="false" onAction="#searchFlight" style="-fx-background-color: RED;" text="SEARCH FLIGHT">
+      <Button fx:id="search" layoutX="444.0" layoutY="732.0" mnemonicParsing="false" onAction="#searchFlight" prefHeight="17.0" prefWidth="179.0" style="-fx-background-color: RED;" text="SEARCH FLIGHT">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <TextField fx:id="searchValue" layoutX="201.0" layoutY="734.0" prefHeight="25.0" prefWidth="243.0">

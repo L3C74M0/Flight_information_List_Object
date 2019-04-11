@@ -21,6 +21,7 @@ public class FlightsController {
 	private String label2 = "";
 	private String label3 = "";
 	int currentPage = 1;
+	private long delayedTime;
 
 	@FXML
 	private ResourceBundle resources;
@@ -90,6 +91,9 @@ public class FlightsController {
 
 	@FXML
 	private Label airlineColumn;
+	
+	@FXML
+    private Label delayedTimeLabel;
 
 	@FXML
 	void generateFlights(ActionEvent event) {
@@ -141,7 +145,9 @@ public class FlightsController {
 	@FXML
 	void sortByAirline(ActionEvent event) {
 		try {
+			delayedTime = System.currentTimeMillis();
 			flights.SortByAirline();
+			delayedTimeLabel.setText("Time delayed: "+flights.calculateTime(delayedTime));
 			showTable();
 		} catch (NullPointerException e) {
 			Alert info = new Alert(AlertType.ERROR);
@@ -156,7 +162,9 @@ public class FlightsController {
 	@FXML
 	void sortByCity(ActionEvent event) {
 		try {
+			delayedTime = System.currentTimeMillis();
 			flights.SortByDesnitationCity();
+			delayedTimeLabel.setText("Time delayed: "+flights.calculateTime(delayedTime));
 			showTable();
 		} catch (NullPointerException e) {
 			Alert info = new Alert(AlertType.ERROR);
@@ -171,7 +179,9 @@ public class FlightsController {
 	@FXML
 	void sortByDate(ActionEvent event) {
 		try {
+			delayedTime = System.currentTimeMillis();
 			flights.sortByDate();
+			delayedTimeLabel.setText("Time delayed: "+flights.calculateTime(delayedTime));
 			showTable();
 		} catch (NullPointerException e) {
 			Alert info = new Alert(AlertType.ERROR);
@@ -186,7 +196,9 @@ public class FlightsController {
 	@FXML
 	void sortByFlight(ActionEvent event) {
 		try {
+			delayedTime = System.currentTimeMillis();
 			flights.sortByFlightId();
+			delayedTimeLabel.setText("Time delayed: "+flights.calculateTime(delayedTime));
 			showTable();
 		} catch (NullPointerException e) {
 			Alert info = new Alert(AlertType.ERROR);
@@ -201,7 +213,9 @@ public class FlightsController {
 	@FXML
 	void sortByGate(ActionEvent event) {
 		try {
+			delayedTime = System.currentTimeMillis();
 			flights.sortByBoardingGate();
+			delayedTimeLabel.setText("Time delayed: "+flights.calculateTime(delayedTime));
 			showTable();
 		} catch (NullPointerException e) {
 			Alert info = new Alert(AlertType.ERROR);
@@ -216,7 +230,9 @@ public class FlightsController {
 	@FXML
 	void sortByTime(ActionEvent event) {
 		try {
+			delayedTime = System.currentTimeMillis();
 			flights.sortByDeparture();
+			delayedTimeLabel.setText("Time delayed: "+flights.calculateTime(delayedTime));
 			showTable();
 		} catch (NullPointerException e) {
 			Alert info = new Alert(AlertType.ERROR);

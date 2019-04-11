@@ -225,10 +225,10 @@ public class Flights {
 	/*
 	 * El metodo calcula el tiempo que tardó en realizar una búsqueda u ordenamiento
 	 */
-	public long calculateTime() {
-		long time = 0;
-
-		return time;
+	public long calculateTime(long delayedTime) {
+		long timeRelease = System.currentTimeMillis();
+		long timeElapsed = timeRelease - delayedTime;
+		return timeElapsed;
 	}
 
 	/*

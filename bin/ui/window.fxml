@@ -115,5 +115,10 @@
             <Font size="23.0" />
          </font>
       </Label>
+      <Label fx:id="delayedTimeLabel" layoutX="29.0" layoutY="7.0" prefHeight="51.0" prefWidth="200.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

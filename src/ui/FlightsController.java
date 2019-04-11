@@ -132,7 +132,7 @@ public class FlightsController {
         	info.setTitle("ERROR");
         	info.setHeaderText(null);
         	info.initStyle(StageStyle.UTILITY);
-        	info.setContentText("Please enter some number");
+        	info.setContentText("Please create some flights first");
         	info.show();
     	} 
 	}
@@ -147,7 +147,7 @@ public class FlightsController {
         	info.setTitle("ERROR");
         	info.setHeaderText(null);
         	info.initStyle(StageStyle.UTILITY);
-        	info.setContentText("Please enter some number");
+        	info.setContentText("Please create some flights first");
         	info.show();
     	} 
 	}
@@ -162,7 +162,7 @@ public class FlightsController {
         	info.setTitle("ERROR");
         	info.setHeaderText(null);
         	info.initStyle(StageStyle.UTILITY);
-        	info.setContentText("Please enter some number");
+        	info.setContentText("Please create some flights first");
         	info.show();
     	} 
 	}
@@ -177,7 +177,7 @@ public class FlightsController {
         	info.setTitle("ERROR");
         	info.setHeaderText(null);
         	info.initStyle(StageStyle.UTILITY);
-        	info.setContentText("Please enter some number");
+        	info.setContentText("Please create some flights first");
         	info.show();
     	} 
 	}
@@ -192,7 +192,7 @@ public class FlightsController {
         	info.setTitle("ERROR");
         	info.setHeaderText(null);
         	info.initStyle(StageStyle.UTILITY);
-        	info.setContentText("Please enter some number");
+        	info.setContentText("Please create some flights first");
         	info.show();
     	} 
 	}
@@ -207,7 +207,7 @@ public class FlightsController {
         	info.setTitle("ERROR");
         	info.setHeaderText(null);
         	info.initStyle(StageStyle.UTILITY);
-        	info.setContentText("Please enter some number");
+        	info.setContentText("Please create some flights first");
         	info.show();
     	} 
 	}

@@ -43,8 +43,15 @@ public class Flight implements Comparable<Flight> {
 
 	@Override
 	public int compareTo(Flight otherFlight) {
-		
-		return 0;
+		int compare;
+		if (destinationCity.compareTo(otherFlight.destinationCity) < 0) {
+			compare = -1;
+		} else if (destinationCity.compareTo(otherFlight.destinationCity) > 0) {
+			compare = 1;
+		} else {
+			compare = 0;
+		}
+		return compare;
 	}
 
 }

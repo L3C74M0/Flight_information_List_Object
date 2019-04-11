@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Flights {
 	private ArrayList<Flight> flights;
@@ -108,33 +109,12 @@ public class Flights {
 	 */
 
 	public void sortByDate() {
-		for (int I = 0; I < flights.size() - 1; I++) {
-			String minorDate = flights.get(I).getDate();
-			String[] separateDate = minorDate.split("-");
-			String minMonth = separateDate[1];
-		//	String minDay = separateDate[2];
-			int minorPosition = I;
-
-			for (int J = I + 1; J < flights.size(); J++) {
-				String dateNext = flights.get(J).getDate();
-				String[] separateDateNext = dateNext.split("-");
-				String monthNex = separateDateNext[1];
-			//	String dayNex = separateDateNext[2];
-
-				if (monthNex.compareTo(minMonth) < 0) {
-					minorPosition = J;
-					minorDate = flights.get(J).getDate();
-				}
-
-				Flight temp = flights.get(minorPosition);
-				flights.set(minorPosition, flights.get(I));
-				flights.set(I, temp);
-			}
-		}
+		//inteface 
+		Collections.sort(flights,new DateAndTimeComparator());
 	}
+	
 	/**
 	 * Organiza los vuelos por horas de salida
-	 * 
 	 */
 	public void sortByDeparture() {
 		for (int K = 0; K < flights.size(); K++) {
@@ -203,20 +183,7 @@ public class Flights {
 	 * Ordena los vuelos segun ciudad de destino, ordenamiento por seleccion
 	 */
 	public void SortByDesnitationCity() {
-		for (int I = 0; I < flights.size() - 1; I++) {
-			String minorFlight = flights.get(I).getDestinationCity();
-			int minorPosition = I;
-			for (int J = I + 1; J < flights.size(); J++) {
-				String currentFlight = flights.get(J).getDestinationCity();
-				if (currentFlight.compareTo(minorFlight) < 0) {
-					minorFlight = currentFlight;
-					minorPosition = J;
-				}
-			}
-			Flight temp = flights.get(minorPosition);
-			flights.set(minorPosition, flights.get(I));
-			flights.set(I, temp);
-		}
+		Collections.sort(flights);
 	}
 
 	/*
@@ -233,23 +200,6 @@ public class Flights {
 				}
 			}
 		}
-	}
-
-	/*
-	 * El metodo calcula el tiempo que tardó en realizar una búsqueda u ordenamiento
-	 */
-	public long calculateTime() {
-		long time = 0;
-
-		return time;
-	}
-
-	/*
-	 * El metodo busca en un arreglo un vuelo return el primer Flight encontrado
-	 */
-	public Flight searchFly(String characteristic) {
-		Flight temp = null;
-		return temp;
 	}
 
 	/*
@@ -270,6 +220,22 @@ public class Flights {
 			flights.set(minorPosition, flights.get(i));
 			flights.set(i, temp);
 		}
+	}	
+	
+	/*
+	 * El metodo calcula el tiempo que tardó en realizar una búsqueda u ordenamiento
+	 */
+	public long calculateTime() {
+		long time = 0;
+
+		return time;
 	}
 
+	/*
+	 * El metodo busca en un arreglo un vuelo return el primer Flight encontrado
+	 */
+	public Flight searchFly(String characteristic) {
+		Flight temp = null;
+		return temp;
+	}
 }

@@ -155,7 +155,8 @@ public class FlightsController {
 	@FXML
 	void sortByDate(ActionEvent event) {
 		try{
-			
+			flights.sortByDate();
+			showTable();
 		}catch(NullPointerException e) {
     		Alert info = new Alert(AlertType.ERROR);
         	info.setTitle("ERROR");
@@ -199,7 +200,8 @@ public class FlightsController {
 	@FXML
 	void sortByTime(ActionEvent event) {
 		try{
-			
+			flights.sortByDeparture();;
+			showTable();
 		}catch(NullPointerException e) {
     		Alert info = new Alert(AlertType.ERROR);
         	info.setTitle("ERROR");
@@ -222,21 +224,15 @@ public class FlightsController {
 		label2="";
 		label3="";
 		for (int I = 0; I < flights.getFlights().size(); I++) {
-			label1 += 
-					flights.getFlights().get(I).getDate()+"\t"+
-    				flights.getFlights().get(I).getDepartureTime()+"\t\t\t\t\t\t\t\t\t\t\t\t\t"+
-    				flights.getFlights().get(I).getBoardingGate()+"\n";
+			label1 += flights.getFlights().get(I).getDate() + "\t" + flights.getFlights().get(I).getDepartureTime()
+					+ "\t\t\t\t\t\t\t\t\t\t\t\t\t" + flights.getFlights().get(I).getBoardingGate() + "\n";
 			dateColum.setText(label1);
-		}
-		for (int J = 0; J < flights.getFlights().size(); J++) {
-			label2 += 
-					flights.getFlights().get(J).getId()+"\t\t\t"+
-					flights.getFlights().get(J).getDestinationCity()+"\n";
+
+			label2 += flights.getFlights().get(I).getId() + "\t\t\t" + flights.getFlights().get(I).getDestinationCity()
+					+ "\n";
 			flightColumn.setText(label2);
-		}
-		for (int K = 0; K < flights.getFlights().size(); K++) {
-			label3 += 
-					flights.getFlights().get(K).getAirline()+"\n";
+
+			label3 += flights.getFlights().get(I).getAirline() + "\n";
 			airlineColumn.setText(label3);
 		}
 	}

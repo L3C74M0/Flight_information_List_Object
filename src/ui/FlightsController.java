@@ -114,8 +114,6 @@ public class FlightsController {
 			info.setContentText("Please enter some number");
 			info.show();
 		}
-
-		showTable();
 	}
 
 	@FXML
@@ -138,8 +136,36 @@ public class FlightsController {
 
 	@FXML
 	void searchFlight(ActionEvent event) {
-		String characteristic = searchValue.getText();
-		flights.searchFly(characteristic);
+		if (flights.getFlights() != null) {
+			try {
+				String characteristic = searchValue.getText();
+				if(flights.searchFly(characteristic)==null) {
+					Alert info = new Alert(AlertType.ERROR);
+					info.setTitle("ERROR");
+					info.setHeaderText(null);
+					info.initStyle(StageStyle.UTILITY);
+					info.setContentText("The searched flight has not been found");
+					info.show();
+				}else {
+					System.out.println("boarding: "+ flights.getFlights().get(0).getBoardingGate());
+					showTable();
+				}
+			} catch (NumberFormatException e) {
+				Alert info = new Alert(AlertType.ERROR);
+				info.setTitle("ERROR");
+				info.setHeaderText(null);
+				info.initStyle(StageStyle.UTILITY);
+				info.setContentText("please write some value");
+				info.show();
+			}
+		} else {
+			Alert info = new Alert(AlertType.ERROR);
+			info.setTitle("ERROR");
+			info.setHeaderText(null);
+			info.initStyle(StageStyle.UTILITY);
+			info.setContentText("Please create some flights first");
+			info.show();
+		}
 	}
 
 	@FXML
@@ -251,7 +277,7 @@ public class FlightsController {
 		previousPage.setVisible(false);
 	}
 
-	public void showTable() {
+	public void showTable() throws NullPointerException{
 		label1 = "";
 		label2 = "";
 		label3 = "";

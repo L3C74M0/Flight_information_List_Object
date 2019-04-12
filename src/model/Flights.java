@@ -234,8 +234,52 @@ public class Flights {
 	/*
 	 * El metodo busca en un arreglo un vuelo return el primer Flight encontrado
 	 */
-	public Flight searchFly(String characteristic) {
+	public Flight searchFly(String characteristic) throws NumberFormatException{
 		Flight temp = null;
+		try {
+			int value = Integer.parseInt(characteristic);
+			if(value < 1000) {
+				int boardingGate = value;
+				
+				if (searchByBoardingGate(boardingGate) != -1) {
+	               temp = flights.get(boardingGate);
+	               
+	            }   		
+			}else {
+				int id = value;
+				System.out.println("Es id");
+				
+				
+			}
+		}catch (Exception e){
+			if(characteristic.equalsIgnoreCase("")) {
+				throw new NumberFormatException();
+			}else {
+				System.out.println("Es String");
+			}
+		}
+		flights.clear();
+        flights.add(temp);
 		return temp;
+	}
+	
+	public int searchByBoardingGate(int boardingGate) {		
+		int valueToLookFor = boardingGate;
+		int start = 0;
+		int end = flights.size() - 1;
+		int position;
+
+		while (start <= end) {
+			position = (start + end) / 2;
+
+			if (flights.get(position).getBoardingGate() == valueToLookFor) {
+				return position;
+			} else if (valueToLookFor > flights.get(position).getBoardingGate()) {
+				start = position + 1;
+			} else {
+				end = position - 1;
+			}
+		}
+		return -1;
 	}
 }

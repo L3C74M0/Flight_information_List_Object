@@ -1,5 +1,9 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -7,32 +11,16 @@ public class Flights {
 	private ArrayList<Flight> flights;
 	private String[] cities;
 	private String[] airlines;
+	private final static String CITIES_FILE = "resourses/cities.txt";
+	private final static String AIRLINES_FILE = "resourses/airlines.txt";
 
-	public Flights(ArrayList<Flight> flights) {
+	public Flights(ArrayList<Flight> flights) throws IOException {
 		this.flights = flights;
 		cities = new String[10];
 		airlines = new String[10];
 
-		cities[0] = "Bogota";
-		cities[2] = "Medellin";
-		cities[3] = "Cali";
-		cities[4] = "Lima";
-		cities[5] = "Cartagena";
-		cities[6] = "Cucuta";
-		cities[7] = "Texas";
-		cities[8] = "Braga";
-		cities[9] = "Quito";
-
-		airlines[0] = "Avianca";
-		airlines[1] = "LATAM";
-		airlines[2] = "EASYFLY";
-		airlines[3] = "Wingo";
-		airlines[4] = "SATENA";
-		airlines[5] = "VivaColombia";
-		airlines[6] = "IBERIA";
-		airlines[7] = "AmericanAirlines";
-		airlines[8] = "AirFrance";
-		airlines[9] = "DELTA";
+		loadCitys(CITIES_FILE);
+		loadCountries(AIRLINES_FILE);
 	}
 
 	public ArrayList<Flight> getFlights() {
@@ -238,18 +226,13 @@ public class Flights {
 		Flight temp = null;
 		try {
 			int value = Integer.parseInt(characteristic);
-			if(value < 1000) {
+			if (value < 1000) {
 				int boardingGate = value;
-				
 				if (searchByBoardingGate(boardingGate) != -1) {
-	               temp = flights.get(boardingGate);
-	               
-	            }   		
-			}else {
-				int id = value;
-				System.out.println("Es id");
-				
-				
+					temp = flights.get(boardingGate);
+				}
+			} else {
+				System.out.println("Es identificador");		
 			}
 		}catch (Exception e){
 			if(characteristic.equalsIgnoreCase("")) {
@@ -262,7 +245,11 @@ public class Flights {
         flights.add(temp);
 		return temp;
 	}
-	
+	/**
+	 * El metodo busca el primer vuelo, por puerta de embarque, utiliza una busqueda bianria
+	 * @param boardingGate
+	 * @return
+	 */
 	public int searchByBoardingGate(int boardingGate) {		
 		int valueToLookFor = boardingGate;
 		int start = 0;
@@ -281,5 +268,33 @@ public class Flights {
 			}
 		}
 		return -1;
+	}
+	
+	public void loadCitys(String path) throws IOException {
+		File f = new File(path);
+		FileReader fr = new FileReader(f);
+		BufferedReader br = new BufferedReader(fr);
+
+		String line = br.readLine();
+		while (line != null) {
+			cities = line.split(" ");
+			line = br.readLine();
+		}
+		br.close();
+		fr.close();
+	}
+	
+	public void loadCountries(String path) throws IOException {
+		File f = new File(path);
+		FileReader fr = new FileReader(f);
+		BufferedReader br = new BufferedReader(fr);
+
+		String line = br.readLine();
+		while (line != null) {
+			airlines = line.split(" ");
+			line = br.readLine();
+		}
+		br.close();
+		fr.close();
 	}
 }

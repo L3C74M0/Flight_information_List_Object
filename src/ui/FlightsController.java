@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -100,12 +101,16 @@ public class FlightsController {
 		int value = 0;
 		try {
 			value = Integer.parseInt(amountFlights.getText());
-			flights = new Flights(flights.generateFlightsList(value));
-			if (value > 10) {
-				nextPage.setVisible(true);
-				previousPage.setVisible(true);
+			try {
+				flights = new Flights(flights.generateFlightsList(value));
+				if (value > 10) {
+					nextPage.setVisible(true);
+					previousPage.setVisible(true);
+				}
+				showTable();
+			} catch (IOException e) {
+				
 			}
-			showTable();
 		} catch (NumberFormatException e) {
 			Alert info = new Alert(AlertType.ERROR);
 			info.setTitle("ERROR");
@@ -147,7 +152,6 @@ public class FlightsController {
 					info.setContentText("The searched flight has not been found");
 					info.show();
 				}else {
-					System.out.println("boarding: "+ flights.getFlights().get(0).getBoardingGate());
 					showTable();
 				}
 			} catch (NumberFormatException e) {
@@ -272,9 +276,12 @@ public class FlightsController {
 
 	@FXML
 	void initialize() {
-		flights = new Flights(null);
-		nextPage.setVisible(false);
-		previousPage.setVisible(false);
+		try {
+			flights = new Flights(null);
+			nextPage.setVisible(false);
+			previousPage.setVisible(false);
+		} catch (IOException e) {
+		}
 	}
 
 	public void showTable() throws NullPointerException{

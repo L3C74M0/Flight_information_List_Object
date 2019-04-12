@@ -16,31 +16,49 @@ public class Flight implements Comparable<Flight> {
 		this.destinationCity = destinationCity;
 		this.boardingGate = boardingGate;
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 	public int getBoardingGate() {
 		return boardingGate;
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 	public String getDestinationCity() {
 		return destinationCity;
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 	public String getId() {
 		return id;
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 	public String getAirline() {
 		return airline;
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 	public String getDepartureTime() {
 		return departureTime;
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 	public String getDate() {
 		return date;
 	}
-
+	
 	@Override
 	public int compareTo(Flight otherFlight) {
 		int compare;

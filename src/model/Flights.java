@@ -19,16 +19,22 @@ public class Flights {
 		cities = new String[10];
 		airlines = new String[10];
 
-		loadCitys(CITIES_FILE);
-		loadCountries(AIRLINES_FILE);
+		loadCities(CITIES_FILE);
+		loadAirlines(AIRLINES_FILE);
 	}
-
+	/**
+	 * the method returns an arrangement of flights
+	 * @return
+	 */
 	public ArrayList<Flight> getFlights() {
 		return flights;
 	}
 
-	/*
-	 * El metodo genera una lista de vuelos aleatoriamente return ArrayList<Flight>
+
+	/**
+	 * The method generates a list of flights randomly return ArrayList <Flight>
+	 * @param value
+	 * @return
 	 */
 	public ArrayList<Flight> generateFlightsList(int value) {
 		flights = new ArrayList<Flight>();
@@ -93,16 +99,14 @@ public class Flights {
 	}
 
 	/*
-	 * El metodo organiza el arraylist por fecha, sin completar
+	 * The method organizes flights by date
 	 */
-
 	public void sortByDate() {
-		//inteface 
 		Collections.sort(flights,new DateAndTimeComparator());
 	}
 	
 	/**
-	 * Organiza los vuelos por horas de salida
+	 * The method organizes flights by departure time
 	 */
 	public void sortByDeparture() {
 		for (int K = 0; K < flights.size(); K++) {
@@ -149,7 +153,9 @@ public class Flights {
 		
 		}		
 	}
-
+	/**
+	 * The method organizes flights by airline
+	 */
 	public void SortByAirline() {
 		for (int i = 0; i < flights.size() - 1; i++) {
 			String minorFlight = flights.get(i).getAirline();
@@ -168,15 +174,14 @@ public class Flights {
 	}
 
 	/*
-	 * Ordena los vuelos segun ciudad de destino, ordenamiento por seleccion
+	 * The method organizes flights by destination city
 	 */
 	public void SortByDesnitationCity() {
 		Collections.sort(flights);
 	}
 
 	/*
-	 * Organiza los vuelos por puerta embarque, utiliza el metodo burubuja de
-	 * ordenamiento
+	 * The method organizes flights by boarding gate
 	 */
 	public void sortByBoardingGate() {
 		for (int I = 0; I < flights.size() - 1; I++) {
@@ -191,7 +196,7 @@ public class Flights {
 	}
 
 	/*
-	 * Organiza los vuelos por identificador, utiliza el metodo de seleccion
+	 * The method organizes flights by identifier
 	 */
 	public void sortByFlightId() {
 		for (int i = 0; i < flights.size() - 1; i++) {
@@ -210,8 +215,10 @@ public class Flights {
 		}
 	}	
 	
-	/*
-	 * El metodo calcula el tiempo que tardó en realizar una búsqueda u ordenamiento
+	/**
+	 * The method calculates the time it took to perform a search or order
+	 * @param delayedTime
+	 * @return
 	 */
 	public long calculateTime(long delayedTime) {
 		long timeRelease = System.currentTimeMillis();
@@ -219,8 +226,11 @@ public class Flights {
 		return timeElapsed;
 	}
 
-	/*
-	 * El metodo busca en un arreglo un vuelo return el primer Flight encontrado
+	/**
+	 * The method looks for in a fix a flight return the first Flight found
+	 * @param characteristic
+	 * @return
+	 * @throws NumberFormatException
 	 */
 	public Flight searchFly(String characteristic) throws NumberFormatException{
 		Flight temp = null;
@@ -246,9 +256,9 @@ public class Flights {
 		return temp;
 	}
 	/**
-	 * El metodo busca el primer vuelo, por puerta de embarque, utiliza una busqueda bianria
+	 * The method searches for the first flight, by boarding gate, uses a biannier search
 	 * @param boardingGate
-	 * @return
+	 * @return 
 	 */
 	public int searchByBoardingGate(int boardingGate) {		
 		int valueToLookFor = boardingGate;
@@ -269,8 +279,12 @@ public class Flights {
 		}
 		return -1;
 	}
-	
-	public void loadCitys(String path) throws IOException {
+	/**
+	 * The method loads a list of cities from a text file
+	 * @param path
+	 * @throws IOException
+	 */
+	public void loadCities(String path) throws IOException {
 		File f = new File(path);
 		FileReader fr = new FileReader(f);
 		BufferedReader br = new BufferedReader(fr);
@@ -283,8 +297,12 @@ public class Flights {
 		br.close();
 		fr.close();
 	}
-	
-	public void loadCountries(String path) throws IOException {
+	/**
+	 * The method loads a list of airlines from a text file
+	 * @param path
+	 * @throws IOException
+	 */
+	public void loadAirlines(String path) throws IOException {
 		File f = new File(path);
 		FileReader fr = new FileReader(f);
 		BufferedReader br = new BufferedReader(fr);

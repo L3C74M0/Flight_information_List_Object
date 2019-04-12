@@ -21,7 +21,7 @@ public class FlightsController {
 	private String label1 = "";
 	private String label2 = "";
 	private String label3 = "";
-	int currentPage = 1;
+	private int currentPage = 1;
 	private long delayedTime;
 
 	@FXML
@@ -95,7 +95,7 @@ public class FlightsController {
 	
 	@FXML
     private Label delayedTimeLabel;
-
+	
 	@FXML
 	void generateFlights(ActionEvent event) {
 		int value = 0;

@@ -122,104 +122,171 @@ public class Flights {
 				
 				if(momentOfTheDay2.equals("PM")) {
 					currentHour = currentHour+1200;
-				}
+				}		
 				
-				if (currentHour < minorTime) {
-					minorTime = currentHour;
-					minorPosition = J;
+				if (first != null) {
+					boolean changed = true;
+					while (changed) {
+						Flight current = first;
+						changed = false;
+						while (current.getNext() != null) {
+							Flight next = current.getNext();
+							if (currentHour < minorTime) {
+								if (current.getPrevious() != null) {
+									current.getPrevious().setNext(next);
+								}
+								if (next.getNext() != null) {
+									next.getNext().setPrevious(current);
+								}
+
+								current.setNext(next.getNext());
+								next.setPrevious(current.getPrevious());
+								current.setPrevious(next);
+								next.setNext(current);
+
+								if (current == first) {
+									first = next;
+								}
+								changed = true;
+							} else {
+								current = current.getNext();
+							}
+						}
+					}
 				}
 			}
 		}		
 	}
 
-
 	public void SortByAirline() {
-		for (int i = 0; i < getSize() ; i++) {
-			String minorFlight = getFlight(i).getAirline();
-			int minorPosition = i;
-			for (int j = i + 1; j < getSize(); j++) {
-				String currentFlight = getFlight(j).getAirline();
-				if (currentFlight.compareTo(minorFlight) < 0) {
-					minorFlight = currentFlight;
-					minorPosition = j;
+		if (first != null) {
+			boolean changed = true;
+			while (changed) {
+				Flight current = first;
+				changed = false;
+				while (current.getNext() != null) {
+					Flight next = current.getNext();
+					if (current.getAirline().compareTo(next.getAirline()) > 0) {
+						if (current.getPrevious() != null) {
+							current.getPrevious().setNext(next);
+						}
+						if (next.getNext() != null) {
+							next.getNext().setPrevious(current);
+						}
+
+						current.setNext(next.getNext());
+						next.setPrevious(current.getPrevious());
+						current.setPrevious(next);
+						next.setNext(current);
+
+						if (current == first) {
+							first = next;
+						}
+						changed = true;
+					} else {
+						current = current.getNext();
+					}
 				}
 			}
 		}
 	}
 
 	public void SortByDesnitationCity() {
-		if (getSize() > 1) {
-			Flight current = first;
-			//Flight temp;
-			
-			while(current.getNext() != null) {
-				Flight higherFlight = current;
-				if(current.getDestinationCity().compareTo(current.getNext().getDestinationCity()) > 0) {
-					
-				}
-			}
-			
-			for (int i = 0; i < getSize(); i++) {
-				String minorFlight = getFlight(i).getId();
-				int minorPosition = i;
-				for (int j = i + 1; j < getSize(); j++) {
-					String currentFlight = getFlight(j).getId();
-					if (currentFlight.compareTo(minorFlight) < 0) {
-						minorFlight = currentFlight;
-						minorPosition = j;
+		if (first != null) {
+			boolean changed = true;
+			while (changed) {
+				Flight current = first;
+				changed = false;
+				while (current.getNext() != null) {
+					Flight next = current.getNext();
+					if (current.getDestinationCity().compareTo(next.getDestinationCity()) > 0) {
+						if (current.getPrevious() != null) {
+							current.getPrevious().setNext(next);
+						}
+						if (next.getNext() != null) {
+							next.getNext().setPrevious(current);
+						}
+
+						current.setNext(next.getNext());
+						next.setPrevious(current.getPrevious());
+						current.setPrevious(next);
+						next.setNext(current);
+
+						if (current == first) {
+							first = next;
+						}
+						changed = true;
+					} else {
+						current = current.getNext();
 					}
 				}
-				
 			}
-			
-			/**Flight inf;
-			while (current != null) {
-				temp = current.getNext();
-				while (temp != null) {
-					if (current.getDestinationCity().compareTo(temp.getDestinationCity()) < 0) {
-						inf = temp;
-						temp = current;
-						current = inf;
-					}
-					temp = temp.getNext();
-				}
-				current = current.getNext();
-				
-			}
-		
-			if (current.getDestinationCity().compareTo(current.getNext().getDestinationCity()) > 0) {
-				temp = current;
-				current.setNext(current.getNext());
-				current.setNext(temp);
-			}
-			current = current.getNext();
-			first = first.getNext();
-		*/
 		}
-	}	
+	}
 
 	public void sortByBoardingGate() {
-		for (int I = 0; I < getSize(); I++) {
-			for (int J = 0; J < getSize(); J++) {
-				if (getFlight(J).getBoardingGate() > getFlight(J + 1).getBoardingGate()) {
-					
+		if (first != null) {
+			boolean changed = true;
+			while (changed) {
+				Flight current = first;
+				changed = false;
+				while (current.getNext() != null) {
+					Flight next = current.getNext();
+					if (current.getBoardingGate() > (next.getBoardingGate())) {
+						if (current.getPrevious() != null) {
+							current.getPrevious().setNext(next);
+						}
+						if (next.getNext() != null) {
+							next.getNext().setPrevious(current);
+						}
+
+						current.setNext(next.getNext());
+						next.setPrevious(current.getPrevious());
+						current.setPrevious(next);
+						next.setNext(current);
+
+						if (current == first) {
+							first = next;
+						}
+						changed = true;
+					} else {
+						current = current.getNext();
+					}
 				}
 			}
 		}
 	}
 
 	public void sortByFlightId() {
-		for (int i = 0; i < getSize(); i++) {
-			String minorFlight = getFlight(i).getId();
-			int minorPosition = i;
-			for (int j = i + 1; j < getSize(); j++) {
-				String currentFlight = getFlight(j).getId();
-				if (currentFlight.compareTo(minorFlight) < 0) {
-					minorFlight = currentFlight;
-					minorPosition = j;
+		if (first != null) {
+			boolean changed = true;
+			while (changed) {
+				Flight current = first;
+				changed = false;
+				while (current.getNext() != null) {
+					Flight next = current.getNext();
+					if (current.getId().compareTo(next.getId()) > 0) {
+						if (current.getPrevious() != null) {
+							current.getPrevious().setNext(next);
+						}
+						if (next.getNext() != null) {
+							next.getNext().setPrevious(current);
+						}
+
+						current.setNext(next.getNext());
+						next.setPrevious(current.getPrevious());
+						current.setPrevious(next);
+						next.setNext(current);
+
+						if (current == first) {
+							first = next;
+						}
+						changed = true;
+					} else {
+						current = current.getNext();
+					}
 				}
 			}
-			
 		}
 	}	
 

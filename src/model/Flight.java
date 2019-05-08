@@ -8,6 +8,7 @@ public class Flight implements Comparable<Flight> {
 	private String destinationCity;
 	private int boardingGate;
 	private Flight next;
+	private Flight previous;
 
 	public Flight(String date, String departureTime, String airline, String id, String destinationCity,
 			int boardingGate) {
@@ -87,4 +88,14 @@ public class Flight implements Comparable<Flight> {
 	public void setNext(Flight next) {
 		this.next = next;
 	}
+
+	public Flight getPrevious() {
+		return previous;
+	}
+
+	public void setPrevious(Flight previous) {
+		this.previous = previous;
+	}
+	
+	
 }

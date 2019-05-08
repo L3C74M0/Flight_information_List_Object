@@ -7,8 +7,10 @@ public class Flight implements Comparable<Flight> {
 	private String id;
 	private String destinationCity;
 	private int boardingGate;
+	private Flight next;
 
-	public Flight(String date, String departureTime, String airline, String id, String destinationCity, int boardingGate) {
+	public Flight(String date, String departureTime, String airline, String id, String destinationCity,
+			int boardingGate) {
 		this.date = date;
 		this.departureTime = departureTime;
 		this.airline = airline;
@@ -16,6 +18,7 @@ public class Flight implements Comparable<Flight> {
 		this.destinationCity = destinationCity;
 		this.boardingGate = boardingGate;
 	}
+
 	/**
 	 * 
 	 * @return
@@ -23,6 +26,7 @@ public class Flight implements Comparable<Flight> {
 	public int getBoardingGate() {
 		return boardingGate;
 	}
+
 	/**
 	 * 
 	 * @return
@@ -30,6 +34,7 @@ public class Flight implements Comparable<Flight> {
 	public String getDestinationCity() {
 		return destinationCity;
 	}
+
 	/**
 	 * 
 	 * @return
@@ -37,6 +42,7 @@ public class Flight implements Comparable<Flight> {
 	public String getId() {
 		return id;
 	}
+
 	/**
 	 * 
 	 * @return
@@ -44,6 +50,7 @@ public class Flight implements Comparable<Flight> {
 	public String getAirline() {
 		return airline;
 	}
+
 	/**
 	 * 
 	 * @return
@@ -51,6 +58,7 @@ public class Flight implements Comparable<Flight> {
 	public String getDepartureTime() {
 		return departureTime;
 	}
+
 	/**
 	 * 
 	 * @return
@@ -58,7 +66,7 @@ public class Flight implements Comparable<Flight> {
 	public String getDate() {
 		return date;
 	}
-	
+
 	@Override
 	public int compareTo(Flight otherFlight) {
 		int compare;
@@ -72,4 +80,11 @@ public class Flight implements Comparable<Flight> {
 		return compare;
 	}
 
+	public Flight getNext() {
+		return next;
+	}
+
+	public void setNext(Flight next) {
+		this.next = next;
+	}
 }

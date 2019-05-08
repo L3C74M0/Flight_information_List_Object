@@ -29,7 +29,7 @@ public class FlightsTest {
 		Flights flights;
 		try {
 			flights = new Flights(null);
-			flight = flights.generateFlightsList(2);
+			//flight = flights.generateFlightsList(2);
 			assertNotNull(flight, "La lista esta vacia");
 		} catch (IOException e) {
 

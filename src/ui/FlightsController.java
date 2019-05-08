@@ -13,6 +13,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.StageStyle;
+import model.Flight;
 import model.Flights;
 
 public class FlightsController {
@@ -109,7 +110,6 @@ public class FlightsController {
 				}
 				showTable();
 			} catch (IOException e) {
-				
 			}
 		} catch (NumberFormatException e) {
 			Alert info = new Alert(AlertType.ERROR);
@@ -124,7 +124,19 @@ public class FlightsController {
 	@FXML
 	void nextPage(ActionEvent event) {
 		int newPage = currentPage + 1;
-		if (newPage < (flights.getFlights().size() / 10) + 2) {
+		int size = 0;
+		int amountPages = 0;
+		Flight tmp = flights.getFirst();
+		while (tmp != null) {
+			tmp = tmp.getNext();
+			amountPages++;
+		}
+		size = amountPages / 10;
+		if (amountPages % 10 != 0) {
+			size++;
+		}
+		
+		if (newPage < (size + 2)) {
 			currentPage = newPage;
 			showTable();
 		}
@@ -284,29 +296,52 @@ public class FlightsController {
 		}
 	}
 
-	public void showTable() throws NullPointerException{
+	public void showTable() throws NullPointerException {
 		label1 = "";
 		label2 = "";
 		label3 = "";
+		
+		int pages = 0;
+		int amountPages = 0;
+		Flight tmp = flights.getFirst();
+		while (tmp != null) {
+			tmp = tmp.getNext();
+			amountPages++;
+		}
+		pages = amountPages / 10;
+		if (amountPages % 10 != 0) {
+			pages++;
+		}
 
-		int pages = (flights.getFlights().size() / 10);
+		Flight currentFlight = flights.getFirst();
+		int totalPages = 1;
 
-		for (int i = 0; i <= pages; i++) {
-			if (i + 1 == currentPage) {
-				for (int J = (10 * i); J < 10 + (10 * i) && J < flights.getFlights().size(); J++) {
-					label1 += flights.getFlights().get(J).getDate() + "\t"
-							+ flights.getFlights().get(J).getDepartureTime() + "\t\t\t\t\t\t\t\t\t\t\t\t\t"
-							+ flights.getFlights().get(J).getBoardingGate() + "\n";
+		for (int I = 0; I < pages; I++) {
+			if (totalPages % 10 == 0) {
+				int forTheNextFlight = 0;
+				while (forTheNextFlight < 10 && currentFlight != null) {
+					currentFlight = currentFlight.getNext();
+					forTheNextFlight++;
+				}
+			}
+
+			totalPages = 0;
+			if (I + 1 == currentPage) {
+				for (int J = 0; J < 10 && currentFlight != null; J++) {
+					label1 += currentFlight.getDate() + "\t" + currentFlight.getDepartureTime()
+							+ "\t\t\t\t\t\t\t\t\t\t\t\t\t" + currentFlight.getBoardingGate() + "\n";
+					
 					dateColum.setText(label1);
-
-					label2 += flights.getFlights().get(J).getId() + "\t\t\t"
-							+ flights.getFlights().get(J).getDestinationCity() + "\n";
+					
+					label2 += currentFlight.getId() + "\t\t\t" + currentFlight.getDestinationCity() + "\n";
 					flightColumn.setText(label2);
 
-					label3 += flights.getFlights().get(J).getAirline() + "\n";
+					label3 += currentFlight.getAirline() + "\n";
 					airlineColumn.setText(label3);
-				}
 
+					currentFlight = currentFlight.getNext();
+					totalPages++;
+				}
 			}
 		}
 	}
